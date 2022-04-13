@@ -145,7 +145,7 @@ return function (App $app) {
             "endpoint" => SellingPartnerApi\Endpoint::NA,
         ];
 
-        if ($_ENV["ROLE_ARN"]) {
+        if (isset($_ENV["ROLE_ARN"])) {
             $config_arr += ["roleArn" => $_ENV["ROLE_ARN"]];
         }
 

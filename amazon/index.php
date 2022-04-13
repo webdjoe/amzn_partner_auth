@@ -52,7 +52,7 @@ EOT;
 
 
 // Load environment variables from ../.env
-$dotenv = Dotenv::createImmutable(__DIR__.'\app' );
+$dotenv = Dotenv::createImmutable(__DIR__.'/app' );
 $dotenv->load();
 // Boolean values in .env are loaded as strings
 $DEBUG = $_ENV["DEBUG"] === "true";
