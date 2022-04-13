@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Authorize | Ads API OAuth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ base_path() }}/style.css">
+</head>
+<body>
+<div id="content">
+
+    <div class="auth-box">
+        <div id="box-text">
+            <p id="box-title" class="header">Amazon Advertising Authorization</p>
+            <p id="box-words" class="text">Please click authorize and login into Amazon to authorize access to your Amazon Advertising account.</p>
+        </div>
+        {% if not authorized %}
+        <form method="POST" action="{{ base_path() }}/ads-authorization">
+            <input class="auth-button" type="submit" value="Authorize" />
+        </form>
+        {% else %}
+        <h2>Authorized!</h2>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
