@@ -46,11 +46,11 @@ The advertising API only outputs the US based advertising profile and profile ID
     "refresh_token": "Atzr|REFRESH TOKEN",
     "token_type": "bearer",
     "expires_in": 3600,
-    "ad_profile_id": 00000000000000,
+    "ad_profile_id": "00000000000000",
     "ad_account_id": "A00AA00AA00AA",
     "marketplace_string_id": "AAAAAAAAAAAA",
     "name": "SELLER NAME",
-    "date": "2020-01-01 01:01:01" # date refresh token obtained
+    "date": "2020-01-01 01:01:01"
 }
 ```
 
@@ -89,14 +89,14 @@ To develop a Seller Central app:
 Detailed instructions can be found [here](https://developer-docs.amazon.com/sp-api/docs/creating-and-configuring-iam-policies-and-entities)
 
  1. Authorize Button to start authorization flow
-```http request
+```
 GET https://sellercentral.amazon.com/apps/authorize/consent?state=RANDOM&application_id=SPAPI_APP_ID
 ```
   - state (random number to prevent cross site forgery)
   - Selling partner app ID - found in Partner Network->Develop Apps
 
 Redirect URL Returns:
-```http request
+```
 GET https://REDIRECT_URL/
        ?spapi_oauth_code=CODE
        &state=STATE
@@ -108,7 +108,7 @@ GET https://REDIRECT_URL/
 
 2. Obtain refresh and authorization token
 
-```http request
+```
 POST https://api.amazon.com/auth/o2/token
 Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
@@ -134,7 +134,7 @@ Returns in JSON payload:
 
 3. After access_token expires, use refresh token to make get new access token
 
-```http request
+```
 POST https://api.amazon.com/auth/o2/token
 Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
@@ -165,7 +165,7 @@ Calls Ads API authorization grant endpoint with:
 - response_type - use 'code' to obtain an authorization code
 - redirect_uri - the uri defined when creating the LwA app
 
-```http request
+```
 GET https://www.amazon.com/ap/oa
     ?client_id=ADS_LWA_CLIENT_ID
     &scope=advertising::campaign_management
@@ -174,7 +174,7 @@ GET https://www.amazon.com/ap/oa
 ```
 
 Returns Redirect URI with query parameters:
-````http request
+````
 GET https://REDIRECT_URI/
     ?scope=advertising::campaign_management
     ?code=OAUTH_CODE
@@ -184,7 +184,7 @@ GET https://REDIRECT_URI/
 
 Call Amazon OAuth url with authorization code
 
-```http request
+```
 POST https://api.amazon.com/auth/o2/token
 Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
@@ -198,7 +198,7 @@ Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 ```
 Returns:
 
-```json
+```
 {
   "refresh_token": refresh_token,
   "access_token": access_token,
@@ -210,7 +210,7 @@ Returns:
 
 Call OAuth endpoint with Refresh Token
 
-```http request
+```
 POST https://api.amazon.com/auth/o2/token
 Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
